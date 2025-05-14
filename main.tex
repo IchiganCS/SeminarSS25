@@ -1,0 +1,100 @@
+\documentclass[]{rptuseminar}
+
+% Specify that the source file has UTF8 encoding
+\usepackage[utf8]{inputenc}
+% Set up the document font; font encoding (here T1) has to fit the used font.
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
+% Load language spec
+\usepackage[american]{babel}
+% German article --> ngerman (n for »neue deutsche Rechtschreibung«)
+% British English --> english
+
+% For bibliography and \cite
+\usepackage{cite}
+
+% AMS extensions for math typesetting
+\usepackage[intlimits]{mathtools}
+\usepackage{amssymb}
+% ... there are many more ...
+
+
+% Load \todo command for notes
+\usepackage{todonotes}
+% Sebastian's favorite command for large inline todonotes
+% Caveat: does not work well with \listoftodos
+\newcommand\todoin[2][]{\todo[inline, caption={2do}, #1]{
+		\begin{minipage}{\linewidth-1em}\noindent\relax#2\end{minipage}}}
+
+% Load \includegraphics command for including pictures (pdf or png highly recommended)
+\usepackage{graphicx}
+
+% Typeset source/pseudo code
+\usepackage{listings}
+
+% Load TikZ library for creating graphics
+% Using the PGF/TikZ manual and/or tex.stackexchange.com is highly adviced.
+\usepackage{tikz}
+% Load tikz libraries needed below (see the manual for a full list)
+\usetikzlibrary{automata,positioning}
+
+% Load \url command for easier hyperlinks without special link text
+\usepackage{url}
+
+% Load support for links in pdfs
+\usepackage{hyperref}
+
+% Defines default styling for code listings
+\definecolor{gray_ulisses}{gray}{0.55}
+\definecolor{green_ulises}{rgb}{0.2,0.75,0}
+\lstset{%
+  columns=flexible,
+  keepspaces=true,
+  tabsize=3,
+  basicstyle={\fontfamily{tx}\ttfamily\small},
+  stringstyle=\color{green_ulises},
+  commentstyle=\color{gray_ulisses},
+  identifierstyle=\slshape{},
+  keywordstyle=\bfseries,
+  numberstyle=\small\color{gray_ulisses},
+  numberblanklines=false,
+  inputencoding={utf8},
+  belowskip=-1mm,
+  escapeinside={//*}{\^^M} % Allow to set labels and the like in comments
+}
+
+% Defines a custom environment for indented shell commands
+\newenvironment{displayshellcommand}{%
+	\begin{quote}%
+	\ttfamily%
+}{%
+	\end{quote}%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Mailbox Types}
+\event{Seminar: Scalable Distributed Systems in Summer term 2025}
+\author{Samuel Klaaßen
+  \institute{RPTU Kaiserslautern-Landau, AG Software Technology: Programming Distributed Systems}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{content.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\nocite{*}
+\bibliographystyle{eptcs}
+\bibliography{references}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

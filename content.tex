@@ -1,0 +1,51 @@
+
+\begin{abstract}
+    Give an abstract of your paper.
+    \begin{itemize}
+        \item What is the problem area and topic and question you're trying to address?
+        \item Why is it a relevant problem ?
+        \item How is it solved?
+        \item Which results were obtained?
+    \end{itemize}
+\end{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\label{sec:introduction}
+
+    The introduction includes the motivation for the presented work.
+    In general, the author will explain the addressed problem and why it is of interest to solve that problem.
+
+\section{Background}
+\label{sec:background}
+    What needs to be known?
+
+\section{Topic-specific content}
+\label{sec:contentSummary}
+
+\section{Discussion}
+\label{sec:discussion}
+    Don\'t forget your Research Question
+    
+\section{Conclusion}
+\label{sec:conclusions}
+    
+
+
+\begin{figure}
+\begin{lstlisting}[language=Scala,numbers=left]
+def sort[T](list: List[T])(implicit ord: Ordering[T]): List[T] = {
+  list match {
+    case Nil => Nil
+    case x :: xs =>
+      // partition list based on pivot element x
+      val (lo, hi) = xs.partition(ord.lt(_, x))  //*\label{srcline:algcmp}
+      sort(lo) ++ (x :: sort(hi))
+  }
+}
+\end{lstlisting}
+\caption{An example algorithm. Do you recognize it? Line~\ref{srcline:algcmp} is crucial!}
+\label{alg:example}
+\end{figure}
+
