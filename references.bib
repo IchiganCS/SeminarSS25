@@ -1,7 +1,133 @@
+@article{amadioBisimulationsAsynchronousPcalculus1998a,
+  title = {On Bisimulations for the Asynchronous {$\pi$}-Calculus},
+  author = {Amadio, Roberto M. and Castellani, Ilaria and Sangiorgi, Davide},
+  year = {1998},
+  month = mar,
+  journal = {Theoretical Computer Science},
+  series = {Concurrency {{Theory}}},
+  volume = {195},
+  number = {2},
+  pages = {291--324},
+  issn = {0304-3975},
+  doi = {10.1016/S0304-3975(97)00223-5},
+  urldate = {2025-06-20},
+  abstract = {The asynchronous {$\pi$}-calculus is a variant of the {$\pi$}-calculus where message emission is non-blocking. Honda and Tokoro have studied a semantics for this calculus based on bisimulation. Their bisimulation relies on a modified transition system where, at any moment, a process can perform any input action. In this paper we propose a new notion of bisimulation for the asynchronous {$\pi$}-calculus, defined on top of the standard labelled transition system. We give several characterizations of this equivalence including one in terms of Honda and Tokoro's bisimulation, and one in terms of barbed equivalence. We show that this bisimulation is preserved by name substitutions, hence by input prefix. Finally, we give a complete axiomatization of the (strong) bisimulation for finite terms.},
+  keywords = {-calculus,Asynchronous communication,Bisimulation}
+}
 
-@MISC{bibliographystylewebpage,
-   key={EPTCS},
-   title={The {EPTCS} bibliography style},
-	url={http://biblio.eptcs.org},
-	year = {Retrieved on March 18, 2019}
+@misc{deliguoroMailboxTypesUnordered2018,
+  title = {Mailbox {{Types}} for {{Unordered Interactions}}},
+  author = {{de'Liguoro}, Ugo and Padovani, Luca},
+  year = {2018},
+  month = jan,
+  number = {arXiv:1801.04167},
+  eprint = {1801.04167},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.1801.04167},
+  urldate = {2025-05-04},
+  abstract = {We propose a type system for reasoning on protocol conformance and deadlock freedom in networks of processes that communicate through unordered mailboxes. We model these networks in the mailbox calculus, a mild extension of the asynchronous \{{\textbackslash}pi\}-calculus with first-class mailboxes and selective input. The calculus subsumes the actor model and allows us to analyze networks with dynamic topologies and varying number of processes possibly mixing different concurrency abstractions. Well-typed processes are deadlock free and never fail because of unexpected messages. For a non-trivial class of them, junk freedom is also guaranteed. We illustrate the expressiveness of the calculus and of the type system by encoding instances of non-uniform, concurrent objects, binary sessions extended with joins and forks, and some known actor benchmarks.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Programming Languages}
+}
+
+@misc{fowlerPatCheckerGithub2025,
+  title = {Pat Checker Github},
+  author = {Fowler, Simon},
+  year = {2025},
+  month = apr,
+  urldate = {2025-05-07},
+  abstract = {Implementation of typechecker from paper "Special Delivery: Programming with Mailbox Types"}
+}
+
+@article{fowlerSeparatingSessionsSmoothly2023,
+  title = {Separating {{Sessions Smoothly}}},
+  author = {Fowler, Simon and Kokke, Wen and Dardha, Ornela and Lindley, Sam and Morris, J. Garrett},
+  year = {2023},
+  month = jul,
+  journal = {Logical Methods in Computer Science},
+  volume = {Volume 19, Issue 3},
+  publisher = {Episciences.org},
+  issn = {1860-5974},
+  doi = {10.46298/lmcs-19(3:3)2023},
+  urldate = {2025-06-20},
+  abstract = {This paper introduces Hypersequent GV (HGV), a modular and extensible core calculus for functional programming with session types that enjoys deadlock freedom, confluence, and strong normalisation. HGV exploits hyper-environments, which are collections of type environments, to ensure that structural congruence is type preserving. As a consequence we obtain an operational correspondence between HGV and HCP -- a process calculus based on hypersequents and in a propositions-as-types correspondence with classical linear logic (CLL). Our translations from HGV to HCP and vice-versa both preserve and reflect reduction. HGV scales smoothly to support Girard's Mix rule, a crucial ingredient for channel forwarding and exceptions.}
+}
+
+@misc{fowlerSpecialDeliveryProgramming2023,
+  title = {Special {{Delivery}}: {{Programming}} with {{Mailbox Types}} ({{Extended Version}})},
+  shorttitle = {Special {{Delivery}}},
+  author = {Fowler, Simon and Attard, Duncan Paul and Sowul, Franciszek and Gay, Simon J. and Trinder, Phil},
+  year = {2023},
+  month = jun,
+  number = {arXiv:2306.12935},
+  eprint = {2306.12935},
+  primaryclass = {cs},
+  publisher = {arXiv},
+  doi = {10.48550/arXiv.2306.12935},
+  urldate = {2025-05-04},
+  abstract = {The asynchronous and unidirectional communication model supported by mailboxes is a key reason for the success of actor languages like Erlang and Elixir for implementing reliable and scalable distributed systems. While many actors may send messages to some actor, only the actor may (selectively) receive from its mailbox. Although actors eliminate many of the issues stemming from shared memory concurrency, they remain vulnerable to communication errors such as protocol violations and deadlocks. Mailbox types are a novel behavioural type system for mailboxes first introduced for a process calculus by de'Liguoro and Padovani in 2018, which capture the contents of a mailbox as a commutative regular expression. Due to aliasing and nested evaluation contexts, moving from a process calculus to a programming language is challenging. This paper presents Pat, the first programming language design incorporating mailbox types, and describes an algorithmic type system. We make essential use of quasi-linear typing to tame some of the complexity introduced by aliasing. Our algorithmic type system is necessarily co-contextual, achieved through a novel use of backwards bidirectional typing, and we prove it sound and complete with respect to our declarative type system. We implement a prototype type checker, and use it to demonstrate the expressiveness of Pat on a factory automation case study and a series of examples from the Savina actor benchmark suite.},
+  archiveprefix = {arXiv},
+  keywords = {Computer Science - Programming Languages}
+}
+
+@inproceedings{imamSavinaActorBenchmark2014,
+  title = {Savina - {{An Actor Benchmark Suite}}: {{Enabling Empirical Evaluation}} of {{Actor Libraries}}},
+  shorttitle = {Savina - {{An Actor Benchmark Suite}}},
+  booktitle = {Proceedings of the 4th {{International Workshop}} on {{Programming}} Based on {{Actors Agents}} \& {{Decentralized Control}}},
+  author = {Imam, Shams M. and Sarkar, Vivek},
+  year = {2014},
+  month = oct,
+  series = {{{AGERE}}! '14},
+  pages = {67--80},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  doi = {10.1145/2687357.2687368},
+  urldate = {2025-06-13},
+  abstract = {This paper introduces the Savina benchmark suite for actor-oriented programs. Our goal is to provide a standard benchmark suite that enables researchers and application developers to compare different actor implementations and identify those that deliver the best performance for a given use-case. The benchmarks in Savina are diverse, realistic, and represent compute (rather than I/O) intensive applications. They range from popular micro-benchmarks to classical concurrency problems to applications that demonstrate various styles of parallelism. Implementations of the benchmarks on various actor libraries are made publicly available through an open source release. This will allow other developers and researchers to compare the performance of their actor libraries on these common set of benchmarks.},
+  isbn = {978-1-4503-2189-1}
+}
+
+@article{neykovaMultipartySessionActors2017,
+  title = {Multiparty {{Session Actors}}},
+  author = {Neykova, Rumyana and Yoshida, Nobuko},
+  year = {2017},
+  month = mar,
+  journal = {Logical Methods in Computer Science},
+  volume = {Volume 13, Issue 1},
+  publisher = {Episciences.org},
+  issn = {1860-5974},
+  doi = {10.23638/LMCS-13(1:17)2017},
+  urldate = {2025-06-13},
+  abstract = {Actor coordination armoured with a suitable protocol description language has been a pressing problem in the actors community. We study the applicability of multiparty session type (MPST) protocols for verification of actor programs. We incorporate sessions to actors by introducing minimum additions to the model such as the notion of actor roles and protocol mailboxes. The framework uses Scribble, which is a protocol description language based on multiparty session types. Our programming model supports actor-like syntax and runtime verification mechanism guaranteeing communication safety of the participating entities. An actor can implement multiple roles in a similar way as an object can implement multiple interfaces. Multiple roles allow for cooperative inter-concurrency in a single actor. We demonstrate our framework by designing and implementing a session actor library in Python and its runtime verification mechanism. Benchmark results demonstrate that the runtime checks induce negligible overhead. We evaluate the applicability of our verification framework to specify actor interactions by implementing twelve examples from an actor benchmark suit.}
+}
+
+@article{padovaniContextFreeSessionType2019,
+  title = {Context-{{Free Session Type Inference}}},
+  author = {Padovani, Luca},
+  year = {2019},
+  month = mar,
+  journal = {ACM Trans. Program. Lang. Syst.},
+  volume = {41},
+  number = {2},
+  pages = {9:1--9:37},
+  issn = {0164-0925},
+  doi = {10.1145/3229062},
+  urldate = {2025-06-13},
+  abstract = {Some interesting communication protocols can be precisely described only by context-free session types, an extension of conventional session types supporting a general form of sequential composition. The complex metatheory of context-free session types, however, hinders the definition of corresponding checking and inference algorithms. In this work, we study a new syntax-directed type system for context-free session types that is easy to embed into a host programming language. We also detail 2 OCaml embeddings that allow us to piggyback on OCaml's type system to check and infer context-free session types.}
+}
+
+@article{padovaniTypeCheckingAlgorithm2018,
+  title = {A Type Checking Algorithm for Concurrent Object Protocols},
+  author = {Padovani, Luca},
+  year = {2018},
+  month = nov,
+  journal = {Journal of Logical and Algebraic Methods in Programming},
+  volume = {100},
+  pages = {16--35},
+  issn = {2352-2208},
+  doi = {10.1016/j.jlamp.2018.06.001},
+  urldate = {2025-06-13},
+  abstract = {Concurrent objects can be accessed and possibly modified concurrently by several running processes. It is notoriously difficult to make sure that such objects are consistent with -- and are used according to -- their intended protocol. In this paper we detail a type checking algorithm for concurrent objects protocols that provides automated support for this verification task. We model concurrent objects in the Objective Join Calculus and specify protocols using terms of a Commutative Kleene Algebra. The presented results are an essential first step towards the application of this static analysis technique to real-world programs.},
+  keywords = {Behavioral type checking,Commutative Kleene Algebra,Concurrent objects,Object protocols,Objective Join Calculus,Type inference}
 }
