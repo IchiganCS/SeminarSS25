@@ -1,151 +1,109 @@
 
 \begin{abstract}
-    Give an abstract of your paper.
-    \begin{itemize}
-        \item What is the problem area and topic and question you're trying to address?
-        \item Why is it a relevant problem ?
-        \item How is it solved?
-        \item Which results were obtained?
-    \end{itemize}
+
 \end{abstract}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Draft ideas}
-The slide for the topic selection stated
-
-\begin{itemize}
-    \item Safe interaction of processes in message passing systems
-    \item Theoretical limits
-    \item Use cases and performance implications
-    \item Mailboxer Tool
-\end{itemize}
-
-\begin{itemize}
-    \item We have 10-15 pages per participant, including figures, references, tables.
-    \item Intended audience: Your peers!
-    \item Present the problem and motivation of the work
-    \item Summarize central definitions and notions
-    \item Present approaches, ideas, solutions, ... from the literature
-    \item Critically discuss these approaches
-    \item Identify open problems and formulate research questions
-\end{itemize}
-
-An idea for the research questions:
-
-\begin{itemize}
-    \item Present and explain mailbox typing as presented by Fowler et al.\cite{fowlerSpecialDeliveryProgramming2023}.    
-    \item Showcase advantages and shortcomings through case studies.
-\end{itemize}
-
-As the research questions do not quite convey why this topic is interesting, but only explain what is presented about the topic, I think that more context is required: why is this topic interesting and what is it that we are hoping for, what problems should be solved. I think that is at least as important as the solution itself.
-
-The problems we are trying to solve should be appropriately explained (deadlock freedom, junk freedom, message count and order). Mention that we look at mailboxes (actor languages). That should be rather easy to understand given the background and those explanations can be rather short.
-
-At this point, it probably makes sense to compare several algebras which are the foundation for the Pat language which is the main focus.
-
-
-%Type systems are well-known but we surely cannot assume that everyone knows Agda and Rocq very well. I think it is required to explain the non-static nature of the explained type system and make it clear how the types of two actors can fit together: only the combination of two different mailbox types can offer the guarantees we look for.
-
-%From there on, maybe the approach can be represented, always presenting the dual nature of the types of two different actors. Then, that is maybe a difficult part, we can move forward to expanding the examples to use $n$ actors. This will be the main part (topic-specific content) and requires more thought.
-
-%For the remaining part, the theoretical limits are interesting, albeit complex. Performance implications are missing? What is a "Mailboxer Tool"?
-
-For the discussion and "findings" there is little to present. While there are several ideas, they are more a sequential evolution than anything else. We can compare Pat to erlang, but will only find obvious results.
 
 \section{Introduction}
 \label{sec:introduction}
 
-% What is the problem area and topic and question you’re trying to address?
-% Why is it a relevant problem ?
-% Identify the scope of your report (and the limitations)
+Distributed computing has emerged as a central strategy for providing large, scalable and complex services. To handle a large number of distributed nodes efficiently, specialized programming languages like Go, Erlang and Elixir were developed. These languages provide first class support for processes and messages exchanged between those.
+
+There are several methods to design such a message passing system, with two variants being most prominent: A channel-based system like implemented in Go makes it possible for one process to store messages in a message queue and another process can read from that queue. Those are not discussed in report. Erlang and Elixir instead use a actor-based system where each process, called actor, is associated with a mailbox. Each mailbox can be populated from every process by sending a message and only the owner of the mailbox can read from that queue. The rules for reading are usually quite relaxed, with the possiblity for out-of-order processing.
+
+In such systems, the sent messages must have several characteristics which must be maintained by the processes to ensure correctness: each message must be syntactically valid and also be only sent in a correct context. The syntactic correctness of a message is given when it adheres to a specific layout of data, like a pair of integers. Since usually different kinds of messages can be handled by processes, it is logical that the message passing systems discussed here differentiate messages by tags. A syntactically correct message has a specified tag and stores additionally exactly the information required by that tag. 
+
+A contextually correct message respects the state of the receiving actor. An actor might want to restrict users to only send a message of a given kind a limited number of times or requires that a message of a given type is sent at some point. 
 
 
-Distributed systems important.
+A very good example is a future variable process. That is a process for which a value is set exactly once and which then can provide a value on request to different nodes. Code for such a process is shown in listing \ref{lst:futureErlang}.
 
-Difficult to write correct distributed systems. Type systems can help. Not channel- but actor-based. Mailbox types.
 
-How good is this and what are the limitations? We will look at Fowler \cite{fowlerSpecialDeliveryProgramming2023} and use case-studies.
+\begin{figure}[ht]
+\begin{minipage}[c]{0.48\linewidth}
+    \begin{lstlisting}
+empty_future() ->
+  receive
+    { set, X } -> full_future(X)
+  end.
 
-Historically, approach based on \cite{deliguoroMailboxTypesUnordered2018}.
+full_future(X) ->
+  receive
+    { get, Pid } ->
+      Pid ! { reply, X },
+      full_future(X);
+    { set, _ } ->
+      erlang:error("Multiple writes")
+  end.
+    \end{lstlisting}
+    \caption{Implementation of a future process in Erlang\cite{fowlerSpecialDeliveryProgramming2023}.}
+    \label{lst:futureErlang}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.48\linewidth}
+    \begin{tikzpicture}[node distance=3cm,on grid,auto]
+        \node[text width=1.1cm,align=center,state,initial] (s0) {empty};
+        \node[text width=1.1cm,align=center,state] (s1) [right of=s0] {full};
+        \path[->]
+        (s0) edge node {set} (s1)
+        (s0) edge [loop above] node {get (delayed)} ()
+        (s1) edge [loop above] node {get (reply)} ();
+    \end{tikzpicture}
+    \caption{State automaton of a future process. Get requests in the empty state are not answered immediately, but their response is delayed until a value is set. This works beacuse mailboxes typically provide out-of-order operation.}
+    \label{fig:futureStateAutomaton}
+\end{minipage}
+\end{figure}
+
+While syntactic checks, which guarantee that only ever correct get and set operations are sent to the future, are not overly complex and can be implemented rather easily, expressing this state automaton is much more interesting. 
+
+While the code works, it can be used wrong: For multiple set operations, an error will be generated at runtime. The invariant that the set operation can only and must be exactly called once is not encoded. Additionally, a process using this future will have no guarantee that the future really does send a reply. A compiler could not check if the get operation of the consuming client erroneously precedes a set operation. Also, the compiler does not guarantee that the future process indeed sends a to the get operation.
+
+All of these issues could be resolved if we could transform the automaton and the state of the process into the type system. In the following, it is explored how mailboxes can be typed using regular expressions of messages to achieve this. We will determine the mailbox type $?(Put[Int] \cdot Get[!Reply[Int]]^*)$ for the empty future mailbox which encodes all the guarantees required for safe execution.
+
+The research questions we are thus interested to discuss are the following:
+\begin{itemize}
+    \item Present and explain mailbox typing as presented by Fowler et al.\cite{fowlerSpecialDeliveryProgramming2023}.
+    \item Showcase advantages and shortcomings through case studies.
+\end{itemize}
+
 
 \section{Background}
 \label{sec:background}
 
-% Introduce the foundations of the topic
-% What is important to understand the report?
-% Establish terminology to be used in the thesis
-% Use figures and graphics!
+\subsection{Channel-based vs. actor-based message passing}
 
-Explain deadlocks, junk freedom.
 
-Actor languages not needed? I don't think there's a benefit. Can be explained in introduction.
+\subsection{Mailbox validity}
 
-The word session type and behavioral type systems should definitely be mentioned here. Citations are missing here, but there is plenty of research for that. 
 
-Maybe it is interesting to explain the multiparty ideas in \cite{neykovaMultipartySessionActors2017}?
-
-\subsection{Explanation of other systems}
-This section is between background and the topic-specific content. It explains the ideas of $\pi$ calculus from Amadio \cite{amadioBisimulationsAsynchronousPcalculus1998a} which was extended in Padovani \cite{padovaniTypeCheckingAlgorithm2018}.
-
+\subsection{Behavioral types}
 
 
 \section{Topic-specific content}
 \label{sec:contentSummary}
 
-% Present the approaches, ideas, solutions, ... from the literature
-% Discuss their relation, compare them, etc.
-% Use examples, (if possible, your own examples!)
-% Use figures and graphics!
-% Split into different sections if necessary
+\subsection{Mailbox calculus}
+
+\subsection{Pat}
+
+\subsection{Theoretical limits}
+
+\subsection{Performance implications}
 
 
-\subsection{Explanation of Pat}
-To explain the Pat language, we will probably only cover the declarative typing rules.
-
-As most of that is quite easy to grasp and similar to other languages, we focus especially on pattern semantics and usage annotations.
-Other topics explained are type combinations, subtyping.
-
-When I first read the paper, I found the guard clause to be unclear just as well as the freeing and allocating of mailboxes. That will also be explained.
-
-This entire section will be explained with a small example: The future example from the paper is nice, but it will probably be closer related to the case studies.
-
-The type checking algorithm is not covered, it should be mentioned that the required algorithm currently is feasible for realtime.
-
-\subsection{Case studies}
-
-A case study for the sleeping barber is nice as that was not expressed in the benchmark suite from the savina benchmarks \cite{imamSavinaActorBenchmark2014}.
-
-This is probably the heart piece of the report in the sense that it is the best what the discussion can rely on. Every other section is only repetition of excerpts from other papers. 
 
 
 
 \section{Discussion}
 \label{sec:discussion}
 
-% Compare your findings from the literature
-% Argue and convince the reader that the findings address the problems/questions from the introduction
-% Name open aspects and short-comings (but be careful and respectful!)
 
-Obvious shortcomings: No lists, no generics.
-Is that actually true?
 
-\subsection{Open questions}
 
-\begin{enumerate}
-    \item Implementing tools to actually utilize the methods. Already in work. Design for those is an open question.
-    \item Extend the expressability to cover more cases (missing benchmark). However, a logical system might have valid limitations and can still be successfull (all languages sometimes prohibit logically fine operations), as long as all scenarios can be modeled in some way. More types are absolutely necessary.
-    \item Currently, the syntax is much more complex than other languages and seems very hard to migrate. How can migration of large and complex projects happen? If complete migration is unrealistic, how could such a code analyzer be added incrementally to a large project? Is an automatic migration tool feasible or can this simply not happen automatically?
-    \item How many errors are solved by this? Are these methods necessary in practice or is testing more viable? There are several methods providing better statical analysis and while generally popular, there is a balance between effort to use the system and the advantages of said system.
-\end{enumerate}
-
-    
 \section{Conclusion}
 \label{sec:conclusions}
-    
-% Short Summary
-% What are your key conclusions drawn?
-% What are the open research questions?
 
-Presented approach from Fowler is actively researched: idea works well and enables usage theoretically in a lot of scenarios. Definitely interesting for the sake of research, the practical aspect of it is still open.
+
 
