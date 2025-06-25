@@ -1,20 +1,3 @@
-@article{amadioBisimulationsAsynchronousPcalculus1998a,
-  title = {On Bisimulations for the Asynchronous {$\pi$}-Calculus},
-  author = {Amadio, Roberto M. and Castellani, Ilaria and Sangiorgi, Davide},
-  year = {1998},
-  month = mar,
-  journal = {Theoretical Computer Science},
-  series = {Concurrency {{Theory}}},
-  volume = {195},
-  number = {2},
-  pages = {291--324},
-  issn = {0304-3975},
-  doi = {10.1016/S0304-3975(97)00223-5},
-  urldate = {2025-06-20},
-  abstract = {The asynchronous {$\pi$}-calculus is a variant of the {$\pi$}-calculus where message emission is non-blocking. Honda and Tokoro have studied a semantics for this calculus based on bisimulation. Their bisimulation relies on a modified transition system where, at any moment, a process can perform any input action. In this paper we propose a new notion of bisimulation for the asynchronous {$\pi$}-calculus, defined on top of the standard labelled transition system. We give several characterizations of this equivalence including one in terms of Honda and Tokoro's bisimulation, and one in terms of barbed equivalence. We show that this bisimulation is preserved by name substitutions, hence by input prefix. Finally, we give a complete axiomatization of the (strong) bisimulation for finite terms.},
-  keywords = {-calculus,Asynchronous communication,Bisimulation}
-}
-
 @misc{deliguoroMailboxTypesUnordered2018,
   title = {Mailbox {{Types}} for {{Unordered Interactions}}},
   author = {{de'Liguoro}, Ugo and Padovani, Luca},
@@ -40,20 +23,6 @@
   abstract = {Implementation of typechecker from paper "Special Delivery: Programming with Mailbox Types"}
 }
 
-@article{fowlerSeparatingSessionsSmoothly2023,
-  title = {Separating {{Sessions Smoothly}}},
-  author = {Fowler, Simon and Kokke, Wen and Dardha, Ornela and Lindley, Sam and Morris, J. Garrett},
-  year = {2023},
-  month = jul,
-  journal = {Logical Methods in Computer Science},
-  volume = {Volume 19, Issue 3},
-  publisher = {Episciences.org},
-  issn = {1860-5974},
-  doi = {10.46298/lmcs-19(3:3)2023},
-  urldate = {2025-06-20},
-  abstract = {This paper introduces Hypersequent GV (HGV), a modular and extensible core calculus for functional programming with session types that enjoys deadlock freedom, confluence, and strong normalisation. HGV exploits hyper-environments, which are collections of type environments, to ensure that structural congruence is type preserving. As a consequence we obtain an operational correspondence between HGV and HCP -- a process calculus based on hypersequents and in a propositions-as-types correspondence with classical linear logic (CLL). Our translations from HGV to HCP and vice-versa both preserve and reflect reduction. HGV scales smoothly to support Girard's Mix rule, a crucial ingredient for channel forwarding and exceptions.}
-}
-
 @misc{fowlerSpecialDeliveryProgramming2023,
   title = {Special {{Delivery}}: {{Programming}} with {{Mailbox Types}} ({{Extended Version}})},
   shorttitle = {Special {{Delivery}}},
@@ -69,6 +38,21 @@
   abstract = {The asynchronous and unidirectional communication model supported by mailboxes is a key reason for the success of actor languages like Erlang and Elixir for implementing reliable and scalable distributed systems. While many actors may send messages to some actor, only the actor may (selectively) receive from its mailbox. Although actors eliminate many of the issues stemming from shared memory concurrency, they remain vulnerable to communication errors such as protocol violations and deadlocks. Mailbox types are a novel behavioural type system for mailboxes first introduced for a process calculus by de'Liguoro and Padovani in 2018, which capture the contents of a mailbox as a commutative regular expression. Due to aliasing and nested evaluation contexts, moving from a process calculus to a programming language is challenging. This paper presents Pat, the first programming language design incorporating mailbox types, and describes an algorithmic type system. We make essential use of quasi-linear typing to tame some of the complexity introduced by aliasing. Our algorithmic type system is necessarily co-contextual, achieved through a novel use of backwards bidirectional typing, and we prove it sound and complete with respect to our declarative type system. We implement a prototype type checker, and use it to demonstrate the expressiveness of Pat on a factory automation case study and a series of examples from the Savina actor benchmark suite.},
   archiveprefix = {arXiv},
   keywords = {Computer Science - Programming Languages}
+}
+
+@article{huttelFoundationsSessionTypes2016,
+  title = {Foundations of {{Session Types}} and {{Behavioural Contracts}}},
+  author = {H{\"u}ttel, Hans and Lanese, Ivan and Vasconcelos, Vasco T. and Caires, Lu{\'i}s and Carbone, Marco and Deni{\'e}lou, Pierre-Malo and Mostrous, Dimitris and Padovani, Luca and Ravara, Ant{\'o}nio and Tuosto, Emilio and Vieira, Hugo Torres and Zavattaro, Gianluigi},
+  year = {2016},
+  month = apr,
+  journal = {ACM Comput. Surv.},
+  volume = {49},
+  number = {1},
+  pages = {3:1--3:36},
+  issn = {0360-0300},
+  doi = {10.1145/2873052},
+  urldate = {2025-06-13},
+  abstract = {Behavioural type systems, usually associated to concurrent or distributed computations, encompass concepts such as interfaces, communication protocols, and contracts, in addition to the traditional input/output operations. The behavioural type of a software component specifies its expected patterns of interaction using expressive type languages, so types can be used to determine automatically whether the component interacts correctly with other components. Two related important notions of behavioural types are those of session types and behavioural contracts. This article surveys the main accomplishments of the last 20 years within these two approaches.}
 }
 
 @inproceedings{imamSavinaActorBenchmark2014,
@@ -88,33 +72,13 @@
   isbn = {978-1-4503-2189-1}
 }
 
-@article{neykovaMultipartySessionActors2017,
-  title = {Multiparty {{Session Actors}}},
-  author = {Neykova, Rumyana and Yoshida, Nobuko},
-  year = {2017},
-  month = mar,
-  journal = {Logical Methods in Computer Science},
-  volume = {Volume 13, Issue 1},
-  publisher = {Episciences.org},
-  issn = {1860-5974},
-  doi = {10.23638/LMCS-13(1:17)2017},
-  urldate = {2025-06-13},
-  abstract = {Actor coordination armoured with a suitable protocol description language has been a pressing problem in the actors community. We study the applicability of multiparty session type (MPST) protocols for verification of actor programs. We incorporate sessions to actors by introducing minimum additions to the model such as the notion of actor roles and protocol mailboxes. The framework uses Scribble, which is a protocol description language based on multiparty session types. Our programming model supports actor-like syntax and runtime verification mechanism guaranteeing communication safety of the participating entities. An actor can implement multiple roles in a similar way as an object can implement multiple interfaces. Multiple roles allow for cooperative inter-concurrency in a single actor. We demonstrate our framework by designing and implementing a session actor library in Python and its runtime verification mechanism. Benchmark results demonstrate that the runtime checks induce negligible overhead. We evaluate the applicability of our verification framework to specify actor interactions by implementing twelve examples from an actor benchmark suit.}
-}
-
-@article{padovaniContextFreeSessionType2019,
-  title = {Context-{{Free Session Type Inference}}},
+@misc{padovaniBoystrangeMCC2024,
+  title = {Boystrange/{{MCC}}},
   author = {Padovani, Luca},
-  year = {2019},
-  month = mar,
-  journal = {ACM Trans. Program. Lang. Syst.},
-  volume = {41},
-  number = {2},
-  pages = {9:1--9:37},
-  issn = {0164-0925},
-  doi = {10.1145/3229062},
+  year = {2024},
+  month = feb,
   urldate = {2025-06-13},
-  abstract = {Some interesting communication protocols can be precisely described only by context-free session types, an extension of conventional session types supporting a general form of sequential composition. The complex metatheory of context-free session types, however, hinders the definition of corresponding checking and inference algorithms. In this work, we study a new syntax-directed type system for context-free session types that is easy to embed into a host programming language. We also detail 2 OCaml embeddings that allow us to piggyback on OCaml's type system to check and infer context-free session types.}
+  abstract = {Mailbox Calculus Checker}
 }
 
 @article{padovaniTypeCheckingAlgorithm2018,
@@ -130,4 +94,18 @@
   urldate = {2025-06-13},
   abstract = {Concurrent objects can be accessed and possibly modified concurrently by several running processes. It is notoriously difficult to make sure that such objects are consistent with -- and are used according to -- their intended protocol. In this paper we detail a type checking algorithm for concurrent objects protocols that provides automated support for this verification task. We model concurrent objects in the Objective Join Calculus and specify protocols using terms of a Commutative Kleene Algebra. The presented results are an essential first step towards the application of this static analysis technique to real-world programs.},
   keywords = {Behavioral type checking,Commutative Kleene Algebra,Concurrent objects,Object protocols,Objective Join Calculus,Type inference}
+}
+
+@book{sangiorgiPiCalculusTheoryMobile2003,
+  title = {The {{Pi-Calculus}}: {{A Theory}} of {{Mobile Processes}}},
+  shorttitle = {The {{Pi-Calculus}}},
+  author = {Sangiorgi, Davide and Walker, David},
+  year = {2003},
+  month = oct,
+  publisher = {Cambridge University Press},
+  abstract = {Mobile systems, whose components communicate and change their structure, now pervade the informational world and the wider world of which it is a part. The science of mobile systems is as yet immature, however. This book presents the pi-calculus, a theory of mobile systems. The pi-calculus provides a conceptual framework for understanding mobility, and mathematical tools for expressing systems and reasoning about their behaviours. The book serves both as a reference for the theory and as an extended demonstration of how to use pi-calculus to describe systems and analyse their properties. It covers the basic theory of pi-calculus, typed pi-calculi, higher-order processes, the relationship between pi-calculus and lambda-calculus, and applications of pi-calculus to object-oriented design and programming. The book is written at the graduate level, assuming no prior acquaintance with the subject, and is intended for computer scientists interested in mobile systems.},
+  googlebooks = {QkBL\_7VtiPgC},
+  isbn = {978-0-521-54327-9},
+  langid = {english},
+  keywords = {Computers / Languages / General,Computers / Networking / General,Computers / Software Development & Engineering / General,Mathematics / Discrete Mathematics}
 }
