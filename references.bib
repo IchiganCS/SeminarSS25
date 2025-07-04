@@ -8,6 +8,7 @@
   primaryclass = {cs},
   publisher = {arXiv},
   doi = {10.48550/arXiv.1801.04167},
+  url = {http://arxiv.org/abs/1801.04167},
   urldate = {2025-05-04},
   abstract = {We propose a type system for reasoning on protocol conformance and deadlock freedom in networks of processes that communicate through unordered mailboxes. We model these networks in the mailbox calculus, a mild extension of the asynchronous \{{\textbackslash}pi\}-calculus with first-class mailboxes and selective input. The calculus subsumes the actor model and allows us to analyze networks with dynamic topologies and varying number of processes possibly mixing different concurrency abstractions. Well-typed processes are deadlock free and never fail because of unexpected messages. For a non-trivial class of them, junk freedom is also guaranteed. We illustrate the expressiveness of the calculus and of the type system by encoding instances of non-uniform, concurrent objects, binary sessions extended with joins and forks, and some known actor benchmarks.},
   archiveprefix = {arXiv},
@@ -19,6 +20,7 @@
   author = {Fowler, Simon},
   year = {2025},
   month = apr,
+  url = {https://github.com/SimonJF/mbcheck},
   urldate = {2025-05-07},
   abstract = {Implementation of typechecker from paper "Special Delivery: Programming with Mailbox Types"}
 }
@@ -34,6 +36,7 @@
   primaryclass = {cs},
   publisher = {arXiv},
   doi = {10.48550/arXiv.2306.12935},
+  url = {http://arxiv.org/abs/2306.12935},
   urldate = {2025-05-04},
   abstract = {The asynchronous and unidirectional communication model supported by mailboxes is a key reason for the success of actor languages like Erlang and Elixir for implementing reliable and scalable distributed systems. While many actors may send messages to some actor, only the actor may (selectively) receive from its mailbox. Although actors eliminate many of the issues stemming from shared memory concurrency, they remain vulnerable to communication errors such as protocol violations and deadlocks. Mailbox types are a novel behavioural type system for mailboxes first introduced for a process calculus by de'Liguoro and Padovani in 2018, which capture the contents of a mailbox as a commutative regular expression. Due to aliasing and nested evaluation contexts, moving from a process calculus to a programming language is challenging. This paper presents Pat, the first programming language design incorporating mailbox types, and describes an algorithmic type system. We make essential use of quasi-linear typing to tame some of the complexity introduced by aliasing. Our algorithmic type system is necessarily co-contextual, achieved through a novel use of backwards bidirectional typing, and we prove it sound and complete with respect to our declarative type system. We implement a prototype type checker, and use it to demonstrate the expressiveness of Pat on a factory automation case study and a series of examples from the Savina actor benchmark suite.},
   archiveprefix = {arXiv},
@@ -51,6 +54,7 @@
   pages = {3:1--3:36},
   issn = {0360-0300},
   doi = {10.1145/2873052},
+  url = {https://dl.acm.org/doi/10.1145/2873052},
   urldate = {2025-06-13},
   abstract = {Behavioural type systems, usually associated to concurrent or distributed computations, encompass concepts such as interfaces, communication protocols, and contracts, in addition to the traditional input/output operations. The behavioural type of a software component specifies its expected patterns of interaction using expressive type languages, so types can be used to determine automatically whether the component interacts correctly with other components. Two related important notions of behavioural types are those of session types and behavioural contracts. This article surveys the main accomplishments of the last 20 years within these two approaches.}
 }
@@ -67,6 +71,7 @@
   publisher = {Association for Computing Machinery},
   address = {New York, NY, USA},
   doi = {10.1145/2687357.2687368},
+  url = {https://dl.acm.org/doi/10.1145/2687357.2687368},
   urldate = {2025-06-13},
   abstract = {This paper introduces the Savina benchmark suite for actor-oriented programs. Our goal is to provide a standard benchmark suite that enables researchers and application developers to compare different actor implementations and identify those that deliver the best performance for a given use-case. The benchmarks in Savina are diverse, realistic, and represent compute (rather than I/O) intensive applications. They range from popular micro-benchmarks to classical concurrency problems to applications that demonstrate various styles of parallelism. Implementations of the benchmarks on various actor libraries are made publicly available through an open source release. This will allow other developers and researchers to compare the performance of their actor libraries on these common set of benchmarks.},
   isbn = {978-1-4503-2189-1}
@@ -77,6 +82,7 @@
   author = {Padovani, Luca},
   year = {2024},
   month = feb,
+  url = {https://github.com/boystrange/MCC},
   urldate = {2025-06-13},
   abstract = {Mailbox Calculus Checker}
 }
@@ -91,6 +97,7 @@
   pages = {16--35},
   issn = {2352-2208},
   doi = {10.1016/j.jlamp.2018.06.001},
+  url = {https://www.sciencedirect.com/science/article/pii/S2352220817301463},
   urldate = {2025-06-13},
   abstract = {Concurrent objects can be accessed and possibly modified concurrently by several running processes. It is notoriously difficult to make sure that such objects are consistent with -- and are used according to -- their intended protocol. In this paper we detail a type checking algorithm for concurrent objects protocols that provides automated support for this verification task. We model concurrent objects in the Objective Join Calculus and specify protocols using terms of a Commutative Kleene Algebra. The presented results are an essential first step towards the application of this static analysis technique to real-world programs.},
   keywords = {Behavioral type checking,Commutative Kleene Algebra,Concurrent objects,Object protocols,Objective Join Calculus,Type inference}
@@ -103,6 +110,7 @@
   year = {2003},
   month = oct,
   publisher = {Cambridge University Press},
+  url = {https://books.google.de/books/about/The_Pi_Calculus.html?id=QkBL_7VtiPgC&redir_esc=y},
   abstract = {Mobile systems, whose components communicate and change their structure, now pervade the informational world and the wider world of which it is a part. The science of mobile systems is as yet immature, however. This book presents the pi-calculus, a theory of mobile systems. The pi-calculus provides a conceptual framework for understanding mobility, and mathematical tools for expressing systems and reasoning about their behaviours. The book serves both as a reference for the theory and as an extended demonstration of how to use pi-calculus to describe systems and analyse their properties. It covers the basic theory of pi-calculus, typed pi-calculi, higher-order processes, the relationship between pi-calculus and lambda-calculus, and applications of pi-calculus to object-oriented design and programming. The book is written at the graduate level, assuming no prior acquaintance with the subject, and is intended for computer scientists interested in mobile systems.},
   googlebooks = {QkBL\_7VtiPgC},
   isbn = {978-0-521-54327-9},
